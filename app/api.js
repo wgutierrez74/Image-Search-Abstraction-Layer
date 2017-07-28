@@ -29,18 +29,22 @@ methods.pixabay = function(search, offset, response){
       res.pipe(bl(function(err, data){
         if(err){console.log(err); return;}
         data = data.toString();
+        data = JSON.parse(data);
         data = data.hits;
         var images = [];
         for(var i = offset; i<data.length; i++){
           var json = {
-            ""
-          }
-          
+            "URL":data[i].webformatURL,
+            "Tags":data[i].tags,
+            "Thumbnail":data[i].previewURL,
+            "Context":data[i].pageURL
+          };
+          images.push(json);
           if(i==offset+10){
             break;
           }
         }
-        response.send(data.toString());
+        response.send(images);
   }))}).end();
   
   
