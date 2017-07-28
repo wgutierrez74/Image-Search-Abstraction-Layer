@@ -57,19 +57,3 @@ app.use(function(err, req, res, next) {
 app.listen(process.env.PORT, function () {
   console.log('Node.js listening ...');
 });
-
-
-
-// var images = [];
-//         for(var i = offset; i<data.length; i++){
-//           var json = {
-//             "URL":data[i].webformatURL,
-//             "Tags":data[i].tags,
-//             "Thumbnail":data[i].previewURL,
-//             "Context":data[i].pageURL
-//           };
-//           images.push(json);
-//           if(i==offset+10){
-//             break;
-//           }
-//         }
