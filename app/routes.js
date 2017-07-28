@@ -13,10 +13,18 @@ module.exports = function(app){
     var search = req.params.search;
     db.insert(search);
     
-    var offset = req.query.offset;
+    var offset = 0;
+    if(req.query.offset){
+      offset = req.query.offset;
+    }
     api.pixabay(search, offset, res);
 
     
+  });
+  
+  
+  app.route('/latest').get(function(req, res){
+    db.showHistory(res);
   });
   
 };
