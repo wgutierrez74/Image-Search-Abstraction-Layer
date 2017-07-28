@@ -1,4 +1,5 @@
 var db = require("./database.js");
+var api = require("./api.js");
 
 
 module.exports = function(app){
@@ -14,8 +15,12 @@ module.exports = function(app){
     var search = req.params.search;
     db.insert(search);
     
-    var offset = req.query.offset;
     
+    
+    var offset = req.query.offset;
+    var pixabay = api.pixabay(search);
+    
+    res.send(pixabay);
     
     
     //res.send("yeah");
