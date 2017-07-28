@@ -8,7 +8,7 @@ var methods ={};
 methods.insert = function(search){
   mongo.connect(url, function(err, db){
     //var date = new Date();
-    db.collection('search-history').insert({"term":search, "when": new Date().toDateString()});
+    db.collection('search-history').insert({"term":search, "when": new Date().toString()});
     db.close();
   });
 };
@@ -16,7 +16,9 @@ methods.insert = function(search){
 methods.showHistory = function(response){
   mongo.connect(url, function(err, db){
     if(err) throw err
-    db.collection("search-history").find().sort({})
+    db.collection("search-history").find().sort({"when":-1}).limit(10).toArray(function(err, history){
+      response.send(history);
+    });
   });
 }
 
