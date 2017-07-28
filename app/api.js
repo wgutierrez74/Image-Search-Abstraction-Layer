@@ -20,7 +20,7 @@ methods.pixabay = function(search){
   var options = {
     host : "pixabay.com",
     port: 443,
-    path: "api/?key=6024228-33f0d0b2607fe85665a765b2a&q="+search+"&image_type=photo",
+    path: "/api/?key=6024228-33f0d0b2607fe85665a765b2a&q="+search+"&image_type=photo",
     method: "GET"
   };
   
@@ -29,8 +29,9 @@ methods.pixabay = function(search){
       res.pipe(bl(function(err, data){
         if(err){console.log(err); return;}
         //console.log(data);
-        console.log(data.toString().length);
+        //console.log(data.toString().length);
         console.log(data.toString());
+        res.write(data.toString());
   }))});
   
   getRequest.end();
