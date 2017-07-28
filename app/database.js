@@ -7,7 +7,6 @@ var methods ={};
 
 methods.insert = function(search){
   mongo.connect(url, function(err, db){
-    //var date = new Date();
     db.collection('search-history').insert({"term":search, "when": new Date().toString()});
     db.close();
   });
