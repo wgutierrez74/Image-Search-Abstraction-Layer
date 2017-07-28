@@ -12,8 +12,8 @@ var bl = require('bl');
 var methods = {};
 
 
-methods.pixabay = function(search, response){
-  var url = "https://pixabay.com/api/?key=6024228-33f0d0b2607fe85665a765b2a&q="+search+"&image_type=photo";
+methods.pixabay = function(search, offset, response){
+  var url = "https://pixabay.com/api/?key=6024228-33f0d0b2607fe85665a765b2a&q="+search+"&image_type=photo&per_page=200";
   // return $.getJSON(url, function(data){
   //     return data;
   // });
@@ -28,9 +28,18 @@ methods.pixabay = function(search, response){
       res.setEncoding("utf8");
       res.pipe(bl(function(err, data){
         if(err){console.log(err); return;}
-        //console.log(data);
-        //console.log(data.toString().length);
-        console.log(data.toString());
+        data = data.toString();
+        data = data.hits;
+        var images = [];
+        for(var i = offset; i<data.length; i++){
+          var json = {
+            ""
+          }
+          
+          if(i==offset+10){
+            break;
+          }
+        }
         response.send(data.toString());
   }))}).end();
   
