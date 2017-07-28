@@ -13,7 +13,12 @@ module.exports = function(app){
       
     var search = req.params.search;
     db.insert(search);
-    res.send("yeah");
+    
+    var offset = req.query.offset;
+    
+    
+    
+    //res.send("yeah");
     
     
     
