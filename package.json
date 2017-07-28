@@ -4,7 +4,8 @@
 		"express": "^4.14.0",
     "mongodb": "2.2.30",
     "jquery":"3.2.1",
-    "jsdom":"11.1.0"
+    "jsdom":"11.1.0",
+    "bl":"1.2.1"
 	},
 	"main": "server.js",
 	"scripts": {

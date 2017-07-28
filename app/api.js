@@ -7,6 +7,7 @@
 //   }
 // );
 var https = require('https');
+var bl = require('bl');
 
 var methods = {};
 
@@ -24,14 +25,16 @@ methods.pixabay = function(search){
   };
   
   var getRequest = https.request(options, function(res){
-      res.on('data', function(data){
-        return data;
-      })
-  });;
+      res.setEncoding("utf8");
+      res.pipe(bl(function(err, data){
+        if(err){console.log(err); return;}
+        //console.log(data);
+        console.log(data.toString().length);
+        console.log(data.toString());
+  }))});
   
   getRequest.end();
   
-  
-  //return data;
 }
- module.exports=methods;
+  //return data
+module.exports = methods;
